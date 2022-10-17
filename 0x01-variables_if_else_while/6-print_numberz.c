@@ -1,6 +1,7 @@
 #include <stdio.h>
 /**
 *main - prints single digit numbers starting from 0
+*Return: 0
 */
 int main(void)
 {
