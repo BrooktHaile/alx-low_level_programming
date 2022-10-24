@@ -11,8 +11,3 @@ int len = 0;
 while (*(src + len) != '\0')
 {
 *(des + len) = *(src + len);
-len++;
-}
-*(des + len) = '\0';
-return (dest);
-}
