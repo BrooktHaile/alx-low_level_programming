@@ -1,24 +1,33 @@
 #include "main.h"
-#include <limits.h>
 /**
- * _calloc - allocates memory for an array using malloc
- * @nmemb: elements of memory needed
- * @size: size in bytes of each element
- * Return: pointer to the allocated memory
+ * string_nconcat - concatenates 2 strings
+ * @s1: first string
+ * @s2: second string
+ * @n: number of bytes to copy from second string
+ * Return: pointer to new string
  */
-void *_calloc(unsigned int nmemb, unsigned int size)
+char *string_nconcat(char *s1, char *s2, unsigned int n)
 {
-	unsigned int i;
-	char *p;
+	unsigned int i, j, len1 = 0, len2 = 0;
+	char *new_str;
 
-	if (nmemb == 0 || size == 0)
+	if (s1 == NULL)
+		s1 = "";
+	if (s2 == NULL)
+		s2 = "";
+	while (*(s1 + len1) != '\0')
+		len1++;
+	while (*(s2 + len2) != '\0')
+		len2++;
+	if (n >= len2)
+		n = len2;
+	new_str = malloc(sizeof(char) * (len1 + n + 1));
+	if (new_str == NULL)
 		return (NULL);
-	if (size >= UINT_MAX / nmemb || nmemb >= UINT_MAX / size)
-		return (NULL);
-	p = malloc(size * nmemb);
-	if (p == NULL)
-		return (NULL);
-	for (i = 0; i < nmemb * size; i++)
-		p[i] = 0;
-	return ((void *)p);
+	for (i = 0; i < len1; i++)
+		new_str[i] = s1[i];
+	for (j = 0; j < n; i++, j++)
+		new_str[i] = s2[j];
+	new_str[i] = '\0';
+	return (new_str);
 }
